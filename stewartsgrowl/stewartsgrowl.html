@@ -1,0 +1,25 @@
+<head>
+  <title>stewartsgrowl</title>
+  <style type="text/css">
+body {
+background: url('Growler.jpg') no-repeat center center fixed;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Growler.jpg', sizingMethod='scale')";
+filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='.Growler.jpg', sizingMethod='scale');
+}
+</style>
+</head>
+
+<body>
+  <h1>Welcome to Meteor!</h1>
+
+  {{> hello}}
+</body>
+
+<template name="hello">
+  <button>Click Me</button>
+  <p>You've pressed the button {{counter}} times.</p>
+</template>
