@@ -1,0 +1,22 @@
+<head>
+  <title>stewartsgrowl</title>
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="row vertical-align" style="height: 100%;">
+        <div id="content" class="col-md-4" style="height: 100%;"> {{> whatspouring}}</div>
+        <div class="col-md-4">Growler - Any container used to sell a measured amount of beer.</div>
+
+        <div id="content" class="col-md-4" style="height: 100%;"> {{> whatspouring}}</div>
+    </div>
+
+  </div>
+</body>
+
+<template name="whatspouring">
+      <h1>What's pouring?</h1>
+      <button>Click Me</button>
+      <p style="color:white;">You've pressed the button {{counter}} times.</p>
+</template>
