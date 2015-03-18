@@ -1,15 +1,35 @@
 <head>
-  <title>stewartsgrowl</title>
+  <title>Stewart Brewing Growler</title>
+  <link rel="shortcut icon" href="favicon.ico">
+
 </head>
 
 <body>
   <div class="container">
+    {{> header}}
+    <div class="row" style="padding: 20px;">
 
-    <div class="row vertical-align" style="height: 100%;">
-        <div id="content" class="col-md-4" style="height: 100%;"> {{> whatspouring}}</div>
-        <div class="col-md-4">Growler - Any container used to sell a measured amount of beer.</div>
+      <div class="col-lg-4 col-md-5">
+        <h1>Stewart Brewing Growler Station</h1>
+        <div>The name Growler comes from the beer buckets which were available in the early 1890s. These containers had lids which made a growling sound. It was due to carbon dioxide escaping when people walked from the taverns to their homes with a bucket full of takeaway beer!</div>
+      </div>
 
-        <div id="content" class="col-md-4" style="height: 100%;"> {{> whatspouring}}</div>
+      <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-3" style="padding: 20px;">
+
+        <form class="form-inline">
+          <h3>What's brewing?</h3>
+          <div>Enter your mobile number to receive updates when the next batch is ready.</div>
+          <div class="form-group">
+            <input type="number" class="form-control" id="telephoneNo" placeholder="Mobile No.">
+          </div>
+          <button type="submit" class="btn btn-default">Sign Up</button>
+        </form>
+
+      </div>
+    </div>
+
+    <div>
+        <div class="col-md-12"> {{> whatspouring}}</div>
     </div>
 
   </div>
@@ -17,6 +37,67 @@
 
 <template name="whatspouring">
       <h1>What's pouring?</h1>
-      <button>Click Me</button>
-      <p style="color:white;">You've pressed the button {{counter}} times.</p>
+      <div class="row">
+        <div class="col-md-2" style="font-size: 20px;">
+          Growler
+        </div>
+        <div class="col-md-2" style="font-size: 20px;">
+          Growler
+        </div>
+        <div class="col-md-2" style="font-size: 20px;">
+          Growler
+        </div>
+        <div class="col-md-2" style="font-size: 20px;">
+          Growler
+        </div>
+        <div class="col-md-2" style="font-size: 20px;">
+          Growler
+        </div>
+        <div class="col-md-2" style="font-size: 20px;">
+          Growler
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2" style="font-size: 20px;">
+          Growler
+        </div>
+        <div class="col-md-2" style="font-size: 20px;">
+          Growler
+        </div>
+        <div class="col-md-2" style="font-size: 20px;">
+          Growler
+        </div>
+        <div class="col-md-2" style="font-size: 20px;">
+          Growler
+        </div>
+        <div class="col-md-2" style="font-size: 20px;">
+          Growler
+        </div>
+        <div class="col-md-2" style="font-size: 20px;">
+          Growler
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2" style="font-size: 20px;">
+          Growler
+        </div>
+        <div class="col-md-2" style="font-size: 20px;">
+          Growler
+        </div>
+        <div class="col-md-2" style="font-size: 20px;">
+          Growler
+        </div>
+        <div class="col-md-2" style="font-size: 20px;">
+          Growler
+        </div>
+        <div class="col-md-2" style="font-size: 20px;">
+          Growler
+        </div>
+        <div class="col-md-2" style="font-size: 20px;">
+          Growler
+        </div>
+
+      </div>
 </template>
