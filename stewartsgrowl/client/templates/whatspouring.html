@@ -1,0 +1,20 @@
+<template name="whatspouring">
+      <h1>What's pouring?</h1>
+      <div class="row">
+        {{#each beers1}}
+          {{> beerItem}}
+        {{/each}}
+      </div>
+
+      <div class="row">
+        {{#each beers2}}
+          {{> beerItem}}
+        {{/each}}
+      </div>
+
+      <div class="row">
+        {{#each beers3}}
+          {{> beerItem}}
+        {{/each}}
+      </div>
+</template>
