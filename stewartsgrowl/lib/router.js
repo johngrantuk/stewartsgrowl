@@ -28,4 +28,14 @@ var requireLogin = function() {
   }
 }
 
+redirectOnLogin = function() {
+  if (Meteor.userId()){
+    this.render('admin');
+  }else{
+    this.next();
+  }
+}
+
+
+Router.onBeforeAction(redirectOnLogin, {only: 'frontpage'});
 Router.onBeforeAction(requireLogin, {only: 'admin'});
