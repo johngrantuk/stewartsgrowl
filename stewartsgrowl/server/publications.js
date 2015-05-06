@@ -9,3 +9,7 @@ Meteor.publish('beers2', function() {
 Meteor.publish('beers3', function() {
   return Beers3.find();
 });
+
+Meteor.publish('allBeers', function(){
+  return AllBeers.find();
+})

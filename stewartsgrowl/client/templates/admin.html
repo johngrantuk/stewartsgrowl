@@ -1,6 +1,8 @@
 <template name="admin">
+
   <div class="container">
     {{> header}}
+    <!--
     <div class="row" style="padding: 20px;">
 
       <div class="col-lg-4 col-md-5">
@@ -9,11 +11,28 @@
       </div>
 
     </div>
+-->
+    <h1>Stewart Brewing Growler Station - Beer Admin</h1>
+    <div>Update the beer menu & fire out the SMS!</div>
+    <hr>
 
-    <div>
-        <div class="col-md-12"> {{> whatspouring}}</div>
+    <div class="row">
+    {{#each beers}}
+
+        <div class="col-lg-4 col-md-5">
+          {{#autoForm collection="Beers1" id=this.name type="update" doc=this}}
+            <fieldset>
+              {{> afQuickField name='name'}}
+              {{> afQuickField name='strength'}}
+              {{> afQuickField name='description'}}
+            </fieldset>
+            <button type="submit" class="btn btn-primary">Update</button>
+            <hr>
+          {{/autoForm}}
+        </div>
+
+    {{/each}}
     </div>
-
   </div>
 
 </template>

@@ -16,6 +16,15 @@ background-size: cover;
 filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='.Glass.jpg', sizingMethod='scale');
 }
 
+.beer{
+  text-align: right;
+  background: rgba(255, 255, 255, 0.75);
+  color: black;
+  font: 14px Sans-Serif;
+  float: right;
+  /*display:inline-block;*/
+}
+
 p {
 	font: 15px/2 Arial;
 	margin: 0 0 30px 0;
