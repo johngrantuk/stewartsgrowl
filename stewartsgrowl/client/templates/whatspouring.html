@@ -1,19 +1,7 @@
 <template name="whatspouring">
-      <div class="row">
-        {{#each beers1}}
-          {{> beerItem}}
-        {{/each}}
-      </div>
-
-      <div class="row">
-        {{#each beers2}}
-          {{> beerItem}}
-        {{/each}}
-      </div>
-
-      <div class="row">
-        {{#each beers3}}
-          {{> beerItem}}
-        {{/each}}
-      </div>
+  <div class="row">
+    {{#each allBeers}}
+      {{> beerGrid}}
+    {{/each}}
+  </div>
 </template>

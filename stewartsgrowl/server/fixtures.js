@@ -1,4 +1,4 @@
-if (Beers1.find().count() === 0) {
+/*if (Beers1.find().count() === 0) {
   Beers1.insert({
     name: 'Edinburgh Gold'
   });
@@ -77,4 +77,4 @@ if (Beers3.find().count() === 0) {
     name: 'Lager Bee'
   });
 
-}
+}*/

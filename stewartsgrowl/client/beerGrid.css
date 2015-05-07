@@ -1,0 +1,12 @@
+.beerGrid{
+  /*float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 31.76157%;
+  position: relative;*/
+  text-align: center;
+  border: 1px solid;
+  border-bottom: none;
+  margin-bottom: 20px;
+  min-height: 140px;
+}

@@ -50,7 +50,7 @@ redirectOnLogin = function() {
     $('body').css('background','url(Glass2.jpg) no-repeat center center fixed');
   }else{
     this.next();
-    $('body').css('background','url(Glass.jpg) no-repeat center center fixed');
+    $('body').css('background','linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(Glass.jpg) no-repeat center center fixed');
     $('body').css('-webkit-background-size', 'cover');
     $('body').css('-moz-background-size', 'cover');
     $('body').css('-o-background-size', 'cover');

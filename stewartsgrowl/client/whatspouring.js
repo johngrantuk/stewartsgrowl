@@ -9,5 +9,9 @@ Template.whatspouring.helpers({
 
   beers3: function() {
     return Beers3.find();
+  },
+
+  allBeers: function() {
+    return AllBeers.find();
   }
 });

@@ -7,7 +7,12 @@ html, body {
 }
 
 body {
-background: url('Glass.jpg') no-repeat center center fixed;
+  background:
+    linear-gradient(
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0)
+      )
+    url('Glass.jpg') no-repeat center center fixed;
 -webkit-background-size: cover;
 -moz-background-size: cover;
 -o-background-size: cover;
@@ -16,13 +21,23 @@ background-size: cover;
 filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='.Glass.jpg', sizingMethod='scale');
 }
 
+.frontpage div {
+  color: white;
+}
+
 .beer{
   text-align: right;
   background: rgba(255, 255, 255, 0.75);
   color: black;
   font: 14px Sans-Serif;
   float: right;
+  padding: 5px 5px;
   /*display:inline-block;*/
+}
+
+.beerRow{
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 p {
