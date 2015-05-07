@@ -1,0 +1,55 @@
+html, body {
+    height: 100%;
+    margin: 0px;
+}
+.container {
+    height: 100%;
+}
+
+.frontpage div {
+  color: white;
+  line-height: 200%;
+}
+
+.pouring {
+  margin-top: 20px;
+}
+
+.beerGrid{
+  /*float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 31.76157%;
+  position: relative;*/
+  text-align: center;
+  border: 1px solid;
+  border-bottom: none;
+  margin-bottom: 20px;
+  min-height: 140px;
+}
+
+.beerGrid div{
+  line-height: 100%;
+}
+
+.name{
+  margin: 20px;
+}
+
+.strength{
+  margin-bottom: 5px;
+}
+
+/*
+.vertical-align {
+  display: flex;
+  flex-direction: row;
+}
+
+.vertical-align > [class^="col-"],
+.vertical-align > [class*=" col-"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+*/

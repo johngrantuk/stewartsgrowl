@@ -1,23 +1,16 @@
 Router.route('/', {
   name: 'frontpage',
   waitOn: function() {
-    return [Meteor.subscribe('beers1'),
-    Meteor.subscribe('beers2'),
-    Meteor.subscribe('beers3'),
-    Meteor.subscribe('allBeers')];
+    setBackGround("Glass.jpg");
+    return [Meteor.subscribe('allBeers')];
   }
 });
 
 Router.route('/2', {
   name: 'frontpage2',
+  template: 'frontpage',
   waitOn: function(){
-    $('body').css('background','url(Growler.jpg) no-repeat center center fixed');
-    $('body').css('-webkit-background-size', 'cover');
-    $('body').css('-moz-background-size', 'cover');
-    $('body').css('-o-background-size', 'cover');
-    $('body').css('background-size', 'cover');
-    $('body').css('-ms-filter', '\"progid:DXImageTransform.Microsoft.AlphaImageLoader(src=\'Growler.jpg\', sizingMethod=\'scale\')";');
-    $('body').css('filter', 'progid:DXImageTransform.Microsoft.AlphaImageLoader(src=\'.Growler.jpg\', sizingMethod=\'scale\');');
+    setBackGround("Growler.jpg");
     return Meteor.subscribe('allBeers');
   }
 })
@@ -25,9 +18,8 @@ Router.route('/2', {
 Router.route('/admin', {
   name: 'admin',
   waitOn: function() {
-    return [Meteor.subscribe('beers1'),
-    Meteor.subscribe('beers2'),
-    Meteor.subscribe('beers3')];
+    setBackGround();
+    return [Meteor.subscribe('allBeers')];
   }
 });
 
@@ -36,7 +28,7 @@ var requireLogin = function() {
     if (Meteor.loggingIn()) {
       this.render(this.loadingTemplate);
     } else {
-      this.render('accessDenied');
+      this.redirect('/');
     }
   } else {
     this.next();
@@ -45,21 +37,32 @@ var requireLogin = function() {
 
 redirectOnLogin = function() {
   if (Meteor.userId()){
-    this.render('admin');
-    //$('body').css({});
-    $('body').css('background','url(Glass2.jpg) no-repeat center center fixed');
+    this.redirect('/admin');
+    setBackGround();
   }else{
     this.next();
-    $('body').css('background','linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(Glass.jpg) no-repeat center center fixed');
-    $('body').css('-webkit-background-size', 'cover');
-    $('body').css('-moz-background-size', 'cover');
-    $('body').css('-o-background-size', 'cover');
-    $('body').css('background-size', 'cover');
-    $('body').css('-ms-filter', '\"progid:DXImageTransform.Microsoft.AlphaImageLoader(src=\'Glass.jpg\', sizingMethod=\'scale\')";');
-    $('body').css('filter', 'progid:DXImageTransform.Microsoft.AlphaImageLoader(src=\'.Glass.jpg\', sizingMethod=\'scale\');');
   }
 }
 
+setBackGround = function(ImageFile) {
+
+  console.log("Settting.")
+
+  if(ImageFile){
+  $('body').css('background','linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(' + ImageFile + ') no-repeat center center fixed');
+  $('body').css('-webkit-background-size', 'cover');
+  $('body').css('-moz-background-size', 'cover');
+  $('body').css('-o-background-size', 'cover');
+  $('body').css('background-size', 'cover');
+  $('body').css('-ms-filter', '\"progid:DXImageTransform.Microsoft.AlphaImageLoader(src=\'' + ImageFile + '\', sizingMethod=\'scale\')";');
+  $('body').css('filter', 'progid:DXImageTransform.Microsoft.AlphaImageLoader(src=\'.' + ImageFile + '\', sizingMethod=\'scale\');');
+  }
+  else{
+    console.log("No background.");
+    $("body").removeClass();
+    //$('body').css('background','linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(' + ImageFile + ') no-repeat center center fixed');
+  }
+}
 
 Router.onBeforeAction(redirectOnLogin, {only: 'frontpage'});
 Router.onBeforeAction(requireLogin, {only: 'admin'});

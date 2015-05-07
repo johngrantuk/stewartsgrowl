@@ -2,16 +2,6 @@
 
   <div class="container">
     {{> header}}
-    <!--
-    <div class="row" style="padding: 20px;">
-
-      <div class="col-lg-4 col-md-5">
-        <h1>Stewart Brewing Growler Station - Beer Admin</h1>
-        <div>Update the beer menu & fire out the SMS!</div>
-      </div>
-
-    </div>
--->
     <h1>Stewart Brewing Growler Station - Beer Admin</h1>
     <div>Update the beer menu & fire out the SMS!</div>
     <hr>
@@ -20,7 +10,7 @@
     {{#each beers}}
 
         <div class="col-lg-4 col-md-5">
-          {{#autoForm collection="Beers1" id=this.name type="update" doc=this}}
+          {{#autoForm collection="AllBeers" id=this.name type="update" doc=this}}
             <fieldset>
               {{> afQuickField name='name'}}
               {{> afQuickField name='strength'}}
