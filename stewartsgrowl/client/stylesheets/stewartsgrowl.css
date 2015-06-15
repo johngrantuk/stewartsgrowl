@@ -28,16 +28,38 @@ html, body {
   min-height: 140px;
 }
 
+.growlerDescript {
+  /*font-style: italic;*/
+}
+
+.mainHeading{
+  font-weight: bold;
+}
+
+.pouringHeading {
+}
+
 .beerGrid div{
   line-height: 100%;
 }
 
 .name{
-  margin: 20px;
+  height: 45px;
+  margin-top: 10px;
+  margin-bottom: 8px;
+  font-size: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.description{
+  margin-bottom: 18px;
+  font-size: 18px;
 }
 
 .strength{
   margin-bottom: 5px;
+  font-size: 15px;
 }
 
 /*
