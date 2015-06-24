@@ -62,6 +62,11 @@ html, body {
   font-size: 15px;
 }
 
+.s-alert-success {
+    background: #B0BFC4;  /* your background color here */
+    color: #fff  /* your text color here */
+}
+
 /*
 .vertical-align {
   display: flex;

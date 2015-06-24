@@ -23,6 +23,14 @@ Router.route('/admin', {
   }
 });
 
+Router.route('/mobileNoAdmin', {
+  name: 'mobileNoAdmin',
+  waitOn: function() {
+    setBackGround();
+    return [Meteor.subscribe('mobileNos')];
+  }
+});
+
 var requireLogin = function() {
   if (! Meteor.user()) {
     if (Meteor.loggingIn()) {
@@ -59,10 +67,10 @@ setBackGround = function(ImageFile) {
   }
   else{
     console.log("No background.");
-    $("body").removeClass();
-    //$('body').css('background','linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(' + ImageFile + ') no-repeat center center fixed');
+    //$('body').removeClass();
+    $('body').css('background','');
   }
 }
 
 Router.onBeforeAction(redirectOnLogin, {only: 'frontpage'});
-Router.onBeforeAction(requireLogin, {only: 'admin'});
+Router.onBeforeAction(requireLogin, {only: ['admin', 'mobileNoAdmin']});

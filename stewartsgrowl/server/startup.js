@@ -26,6 +26,13 @@ if (Meteor.isServer) {
         AddBeer("Tasty Beer", "Comming soon!", "0");
       }
 
+      if(MobileNos.find().count() === 0){
+        MobileNos.insert({
+          mobileNo: "07706009202",
+          submitted: new Date()
+        });
+      }
+
     });
 }
 

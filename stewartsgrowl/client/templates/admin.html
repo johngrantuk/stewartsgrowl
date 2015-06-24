@@ -1,11 +1,19 @@
 <template name="admin">
 
   <div class="container">
-    {{> header}}
-    <h1>Stewart Brewing Growler Station - Beer Admin</h1>
+    {{> adminNav}}
+    <h1>Beer Admin</h1>
     <div>Update the beer menu & fire out the SMS!</div>
     <hr>
-
+    <h3>Custom Message</h3>
+    <input type="text" class="form-control input-lg" placeholder="e.g. Here's this months Growler list:">
+    <div class="checkbox">
+      <label>
+        <input id="beerCheckBox" type="checkbox" checked> Include Beer List?
+      </label>
+    </div>
+    <button type="button" class="btn btn-success" id="sendBtn">Send</button>
+    <hr>
     <div class="row">
     {{#each beers}}
 

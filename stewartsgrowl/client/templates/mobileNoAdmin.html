@@ -1,0 +1,27 @@
+<template name="mobileNoAdmin">
+
+  <div class="container">
+    {{> adminNav}}
+    <h1>Mobile No Admin</h1>
+    <hr>
+
+    <div class="row">
+    {{#each mobileNos}}
+
+        <div class="col-lg-4 col-md-5">
+          {{#autoForm collection="MobileNos" id=this._id type="update" doc=this}}
+            <fieldset>
+              {{> afQuickField name='mobileNo'}}
+              {{> afQuickField name='submitted'}}
+            </fieldset>
+            <button type="submit" class="btn btn-primary">Update</button>
+            {{> quickRemoveButton collection="MobileNos" _id=this._id class="btn btn-danger"}}
+            <hr>
+          {{/autoForm}}
+        </div>
+
+    {{/each}}
+    </div>
+  </div>
+
+</template>
