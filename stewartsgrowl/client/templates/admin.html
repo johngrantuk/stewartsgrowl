@@ -6,7 +6,14 @@
     <div>Update the beer menu & fire out the SMS!</div>
     <hr>
     <h3>Custom Message</h3>
-    <input type="text" class="form-control input-lg" placeholder="e.g. Here's this months Growler list:">
+    <input type="text" class="form-control input-lg" id="customMessage" placeholder="e.g. Here's this months Growler list:" value="Here's what's brewing!">
+    <h3>Stop Message</h3>
+    <input type="text" class="form-control input-lg" id="stopMessage" value="Reply with STOP anytime to end messages.">
+    <div class="checkbox">
+      <label>
+        <input id="stopCheckBox" type="checkbox" checked> Include Stop Message?
+      </label>
+    </div>
     <div class="checkbox">
       <label>
         <input id="beerCheckBox" type="checkbox" checked> Include Beer List?

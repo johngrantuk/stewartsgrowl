@@ -12,24 +12,21 @@ Template.frontpage.events({
       mobileNo: $(e.target).find('[name=mobileNo]').val(),
     };
 
-    //post._id = Posts.insert(post);
-    console.log("Saving: " + newEntry.mobileNo);
     Meteor.call('mobileNoInsert', newEntry, function(error, result) {
       // display the error to the user and abort
       if (error)
         return alert(error.reason);
 
       if (result.mobileNoExists){
-        sAlert.success('You are added and will receive a message with exciting Stewarts Brewing news!', {position: 'top', timeout: 'none', onRouteClose: false, stack: false});
+        sAlert.success('You are added and will receive a message with Stewart Brewing Beer Alerts!', {position: 'top', timeout: 'none', onRouteClose: false, stack: false});
         console.log("Mobile addded.");
       }
 
       if (result.mobileNoAdded){
-        sAlert.success('You are added and will receive a message with exciting Stewarts Brewing news!', {position: 'top', timeout: 'none', onRouteClose: false, stack: false});
+        Meteor.call('TwilioSend', newEntry.mobileNo, "Hi, thanks for signing up to the Stewart Brewing Beer Alert. Just text STOP any time to leave.");
+        sAlert.success('You are added and will receive a message with Stewart Brewing Beer Alerts!', {position: 'top', timeout: 'none', onRouteClose: false, stack: false});
         console.log("Mobile added.");
       }
-
     });
-
   }
 });

@@ -2,6 +2,8 @@ if (Meteor.isServer) {
 
     Meteor.startup(function () {
 
+      console.log("TEST: " + Meteor.settings.twilioAccountSid);
+
       if (Meteor.users.find().count() === 0)
         Accounts.createUser({username: "admin", email: "sb@admin.com", password: "st3wart@dm1n!"});
 
