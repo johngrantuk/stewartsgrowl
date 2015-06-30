@@ -6,15 +6,6 @@ Router.route('/', {
   }
 });
 
-Router.route('/2', {
-  name: 'frontpage2',
-  template: 'frontpage',
-  waitOn: function(){
-    setBackGround("Growler.jpg");
-    return Meteor.subscribe('allBeers');
-  }
-})
-
 Router.route('/admin', {
   name: 'admin',
   waitOn: function() {
@@ -31,19 +22,19 @@ Router.route('/mobileNoAdmin', {
   }
 });
 
-var requireLogin = function() {
+var requireLogin = function() {               // Called for Beer and MobileNo admin pages. Makes sure a user is logged in to access.
   if (! Meteor.user()) {
     if (Meteor.loggingIn()) {
       this.render(this.loadingTemplate);
     } else {
-      this.redirect('/');
+      this.redirect('/');                     // If not logged in or trying to log in then send back to frontpage.
     }
   } else {
-    this.next();
+    this.next();                              // User is logged in so continue.
   }
 }
 
-redirectOnLogin = function() {
+redirectOnLogin = function() {                // Redirects logged in user to admin page.
   if (Meteor.userId()){
     this.redirect('/admin');
     setBackGround();
@@ -52,22 +43,18 @@ redirectOnLogin = function() {
   }
 }
 
-setBackGround = function(ImageFile) {
-
-  console.log("Settting.")
+setBackGround = function(ImageFile) {         // Sets background of page.
 
   if(ImageFile){
-  $('body').css('background','linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(' + ImageFile + ') no-repeat center center fixed');
-  $('body').css('-webkit-background-size', 'cover');
-  $('body').css('-moz-background-size', 'cover');
-  $('body').css('-o-background-size', 'cover');
-  $('body').css('background-size', 'cover');
-  $('body').css('-ms-filter', '\"progid:DXImageTransform.Microsoft.AlphaImageLoader(src=\'' + ImageFile + '\', sizingMethod=\'scale\')";');
-  $('body').css('filter', 'progid:DXImageTransform.Microsoft.AlphaImageLoader(src=\'.' + ImageFile + '\', sizingMethod=\'scale\');');
+    $('body').css('background','linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(' + ImageFile + ') no-repeat center center fixed');
+    $('body').css('-webkit-background-size', 'cover');
+    $('body').css('-moz-background-size', 'cover');
+    $('body').css('-o-background-size', 'cover');
+    $('body').css('background-size', 'cover');
+    $('body').css('-ms-filter', '\"progid:DXImageTransform.Microsoft.AlphaImageLoader(src=\'' + ImageFile + '\', sizingMethod=\'scale\')";');
+    $('body').css('filter', 'progid:DXImageTransform.Microsoft.AlphaImageLoader(src=\'.' + ImageFile + '\', sizingMethod=\'scale\');');
   }
   else{
-    console.log("No background.");
-    //$('body').removeClass();
     $('body').css('background','');
   }
 }

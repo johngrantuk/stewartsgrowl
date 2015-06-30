@@ -16,11 +16,6 @@ html, body {
 }
 
 .beerGrid{
-  /*float: left;
-  display: block;
-  margin-right: 2.35765%;
-  width: 31.76157%;
-  position: relative;*/
   text-align: center;
   border: 1px solid;
   border-bottom: none;
@@ -66,17 +61,3 @@ html, body {
     background: #B0BFC4;  /* your background color here */
     color: #fff  /* your text color here */
 }
-
-/*
-.vertical-align {
-  display: flex;
-  flex-direction: row;
-}
-
-.vertical-align > [class^="col-"],
-.vertical-align > [class*=" col-"] {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-*/

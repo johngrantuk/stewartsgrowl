@@ -1,70 +1,100 @@
 Meteor.methods({
-  TwilioSendOld: function(Number, Message) {
+  TwilioSendToAll: function(Message) {
 
-    console.log("Sending");
-
-    twilio = Twilio('ACd083d5372108bb0cf5780e79b965a44d', '12fc0193ccd1811c359a5d6fff19c0d0');
-    twilio.sendSms({
-      to: Number,
-      from: '+441315102335',
-      body: Message
-    }, function(err, responseData) { //this function is executed when a response is received from Twilio
-
-      if (!err) { // "err" is an error received during the request, if any
-        // "responseData" is a JavaScript object containing data received from Twilio.
-        // A sample response from sending an SMS message is here (click "JSON" to see how the data appears in JavaScript):
-        // http://www.twilio.com/docs/api/rest/sending-sms#example-1
-        console.log(responseData.from); // outputs "+14506667788"
-        console.log(responseData.body); // outputs "word to your mother."
-      }
-      else{
-        console.log(err);
-      }
-    });
-
-  }
-
-});
-
-Meteor.methods({
-  TwilioSend: function(Number, Message) {
-
-    console.log("Sending to: " + Number);
+    console.log("TwilioSendToAll():");
     console.log("Size: " + Message.length);
+    console.log("Message: " + Message);
 
     var accountSid = Meteor.settings.twilioAccountSid;
     var authToken = Meteor.settings.twilioAuthToken;
 
     var twilio = Meteor.npmRequire('twilio');
-    var client = new twilio.RestClient(accountSid, authToken);
+    var client = new twilio.RestClient(accountSid, authToken);                  // Set up the Twilio Node library.
+
+    var allMobileNos = MobileNos.find();                                        // Find all registered numbers.
+
+    var reportMsg = new Date() + " TwilioSendToAll():\n" + Message + "\n";
+
+    allMobileNos.forEach(function (mobileNo) {                                  // Send message to each.
+
+        reportMsg = reportMsg + "\nSending to: " + mobileNo.mobileNo + "\n";
+
+        console.log("\nSending to: " + mobileNo.mobileNo);
+
+        Async.runSync(function(done) {        // Pauses execution until done() is called.
+
+           client.messages.create({
+             body: Message,
+             to: mobileNo.mobileNo,
+             from: Meteor.settings.twilioNumber
+           }, function(err, message) {
+
+             if (!err) { // "err" is an error received during the request, if any
+              console.log(message);
+              reportMsg = reportMsg + "Message sent to: " + message.to + "\nStatus: " + message.status + "\nSegments: " + message.num_segments + "\nPrice: " + message.price_unit + message.price + "\nError: " + message.error_message + "\n";
+             }
+             else{
+               reportMsg = reportMsg + "Error sending message:\n" + err.message + "\n";
+               console.log("Error sending message:");
+               console.log(err);
+             }
+
+             done(null, "OK");                   // Execution moves on.
+           });
+         });
+
+     });
+
+
+    SendEmail(reportMsg);
+    console.log("Exiting TwilioSendAll().");
+  }
+
+});
+
+Meteor.methods({
+  TwilioSend: function(MobileNo, Message) {
+
+    console.log("TwilioSend():");
+    console.log("Sending to: " + MobileNo);
+    console.log("Size: " + Message.length);
+    console.log("Message: " + Message);
+
+    var accountSid = Meteor.settings.twilioAccountSid;
+    var authToken = Meteor.settings.twilioAuthToken;
+
+    var twilio = Meteor.npmRequire('twilio');
+    var client = new twilio.RestClient(accountSid, authToken);                  // Set up the Twilio Node library.
+
+    var reportMsg = new Date() + " TwilioSend():\n" + Message + "\n";
+
+    reportMsg = reportMsg + "\nSending to: " + MobileNo + "\n";
 
 
     Async.runSync(function(done) {        // Pauses execution until done() is called.
-      client.messages.create({
-        body: Message,
-        to: Number,
-        from: '+441315102335'//,
-        //mediaUrl: "http://www.example.com/hearts.png"
-      }, function(err, message) {
 
-        if (!err) { // "err" is an error received during the request, if any
-          // "responseData" is a JavaScript object containing data received from Twilio.
-          // A sample response from sending an SMS message is here (click "JSON" to see how the data appears in JavaScript):
-          // http://www.twilio.com/docs/api/rest/sending-sms#example-1
-          console.log(message.from); // outputs "+14506667788"
-          console.log(message.body); // outputs "word to your mother."
+       client.messages.create({
+         body: Message,
+         to: MobileNo,
+         from: Meteor.settings.twilioNumber
+       }, function(err, message) {
 
-        }
-        else{
-          console.log(err);
-        }
+         if (!err) { // "err" is an error received during the request, if any
+          console.log(message);
+          reportMsg = reportMsg + "Message sent to: " + message.to + "\nStatus: " + message.status + "\nSegments: " + message.num_segments + "\nPrice: " + message.price_unit + message.price + "\nError: " + message.error_message + "\n";
+         }
+         else{
+           reportMsg = reportMsg + "Error sending message:\n" + err.message + "\n";
+           console.log("Error sending message:");
+           console.log(err);
+         }
 
-        done(null, "OK");                   // Execution moves on.
-      });
-    });
+         done(null, "OK");                   // Execution moves on.
+       });
+     });
 
-    SendEmail("Sent a message.");
-    console.log("Exiting TwilioSend.");
+    SendEmail(reportMsg);
+    console.log("Exiting TwilioSend().");
   }
 
 });
@@ -100,8 +130,8 @@ Meteor.methods({
 var SendEmail = function (Message) {
 
   Email.send({
-      to: "johngrantuk@googlemail.com",
-      from: "johngrantuk@googlemail.com",
+      to: Meteor.settings.adminEmail,
+      from: Meteor.settings.adminEmail,
       subject: "SG Message",
       text: Message
     });

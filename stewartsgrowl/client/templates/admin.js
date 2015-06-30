@@ -9,15 +9,14 @@ Template.admin.events({
 
      var message = CreateMessage();
 
-     Meteor.call('TwilioSend', '+447706009202', message, function(error, result) {
+     Meteor.call('TwilioSendToAll', message, function(error, result) {
        // display the error to the user and abort
        if (error){
-         console.log("Failed")
+         console.log("Error Sending: " + error)
          return;
        }
 
-        console.log("OK")
-
+        sAlert.success('SMS Sent', {position: 'top', timeout: 'none', onRouteClose: false, stack: false});
      });
 
   }

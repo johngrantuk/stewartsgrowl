@@ -2,21 +2,25 @@ if (Meteor.isServer) {
 
     Meteor.startup(function () {
 
+      console.log("Settings Test: " + Meteor.settings.twilioAccountSid);
+
       smtp = {
-    username: 'johngrantuk@googlemail.com',   // eg: server@gentlenode.com
-    password: '19EClarence-G00gleD3v1l!',   // eg: 3eeP1gtizk5eziohfervU
-    server:   'smtp.gmail.com',  // eg: mail.gandi.net
-    port: 587
-  }
+        username: Meteor.settings.emailUserName,
+        password: Meteor.settings.emailPassword,
+        server:   Meteor.settings.emailServer,
+        port: Meteor.settings.emailPort
+      }
 
       process.env.MAIL_URL = 'smtp://' + encodeURIComponent(smtp.username) + ':' + encodeURIComponent(smtp.password) + '@' + encodeURIComponent(smtp.server) + ':' + smtp.port;
 
-      console.log("TEST: " + Meteor.settings.twilioAccountSid);
-
-      if (Meteor.users.find().count() === 0)
-        Accounts.createUser({username: "admin", email: "sb@admin.com", password: "st3wart@dm1n!"});
+      if (Meteor.users.find().count() === 0){
+        console.log("Startup: Creating Admin Account.");
+        Accounts.createUser({username: Meteor.settings.adminUserName, email: Meteor.settings.adminEmail, password: Meteor.settings.adminPassword});
+      }
 
       if(AllBeers.find().count() === 0){
+        console.log("Startup: Adding Default Beers.");
+
         AddBeer("Pentland IPA", "Classic IPA", "3.9");
         AddBeer("Continental Gold", "Golden ale.", "4.8");
         AddBeer("80/", "Scottish Heavy", "4.4");
@@ -38,8 +42,10 @@ if (Meteor.isServer) {
       }
 
       if(MobileNos.find().count() === 0){
+        console.log("Startup: Adding Phone Number.");
+        
         MobileNos.insert({
-          mobileNo: "07706009202",
+          mobileNo: Meteor.settings.adminPhoneNumber,
           submitted: new Date()
         });
       }
