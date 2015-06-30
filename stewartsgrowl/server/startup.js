@@ -2,6 +2,15 @@ if (Meteor.isServer) {
 
     Meteor.startup(function () {
 
+      smtp = {
+    username: 'johngrantuk@googlemail.com',   // eg: server@gentlenode.com
+    password: '19EClarence-G00gleD3v1l!',   // eg: 3eeP1gtizk5eziohfervU
+    server:   'smtp.gmail.com',  // eg: mail.gandi.net
+    port: 587
+  }
+
+      process.env.MAIL_URL = 'smtp://' + encodeURIComponent(smtp.username) + ':' + encodeURIComponent(smtp.password) + '@' + encodeURIComponent(smtp.server) + ':' + smtp.port;
+
       console.log("TEST: " + Meteor.settings.twilioAccountSid);
 
       if (Meteor.users.find().count() === 0)
