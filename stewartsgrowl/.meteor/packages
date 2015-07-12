@@ -21,3 +21,6 @@ meteorhacks:npm
 
 npm-container
 email
+meteorhacks:kadira
+meteorhacks:kadira-profiler
+dispatch:phoneformat.js

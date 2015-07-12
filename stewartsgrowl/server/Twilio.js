@@ -46,7 +46,7 @@ Meteor.methods({
      });
 
 
-    SendEmail(reportMsg);
+    SendEmail(Meteor.settings.emailUserName, Meteor.settings.emailUserName, "SG TwilioReceive", reportMsg);
     console.log("Exiting TwilioSendAll().");
   }
 
@@ -55,7 +55,7 @@ Meteor.methods({
 Meteor.methods({
   TwilioSend: function(MobileNo, Message) {
 
-    console.log("TwilioSend():");
+    console.log("\nTwilioSend():");
     console.log("Sending to: " + MobileNo);
     console.log("Size: " + Message.length);
     console.log("Message: " + Message);
@@ -93,8 +93,8 @@ Meteor.methods({
        });
      });
 
-    SendEmail(reportMsg);
-    console.log("Exiting TwilioSend().");
+    SendEmail(Meteor.settings.emailUserName, Meteor.settings.emailUserName, "SG TwilioReceive", reportMsg);
+    console.log("Exiting TwilioSend().\n");
   }
 
 });
@@ -127,12 +127,33 @@ Meteor.methods({
   }
 });
 
-var SendEmail = function (Message) {
+Meteor.methods({
+  TwilioReceive: function(Body) {
+
+    console.log("\nTwilioReceive()\n");
+    //console.log(Body);
+    console.log("\nFrom: " + Body.From);
+    console.log("To: " + Body.To);
+    console.log("Message: " + Body.Body);
+
+    if(Body.Body.indexOf("GROWLED OUT") > -1){
+      SendEmail(Meteor.settings.emailUserName, Meteor.settings.emailUserName, "SG TwilioReceive END", Body.From + " Sent GROWLED OUT message: " + Body.Body);
+      MobileNos.remove({mobileNo:Body.From});
+
+      Meteor.call('TwilioSend', Body.From, "We've taken you off the list. Please come back when you feel thirsty! :)");
+    }
+    else{
+      SendEmail(Meteor.settings.emailUserName, Meteor.settings.emailUserName, "SG TwilioReceive Random", Body.From + " Sent message: " + Body.Body);
+    }
+  }
+});
+
+var SendEmail = function (To, From, Subject, Message) {
 
   Email.send({
-      to: Meteor.settings.adminEmail,
-      from: Meteor.settings.adminEmail,
-      subject: "SG Message",
+      to: Meteor.settings.emailUserName,
+      from: Meteor.settings.emailUserName,
+      subject: Subject,
       text: Message
     });
 }

@@ -22,6 +22,20 @@ Router.route('/mobileNoAdmin', {
   }
 });
 
+Router.route('/twilio', {                        // Twilio SMS Request (GET) URL is pointed to: http://johns-twilio.meteor.com/Twilio/
+  where: 'server',
+  name: 'twilio',
+  action: function() {
+    console.log("\nTEST");
+    console.log(this.request.body);
+    console.log('\n');
+    this.response.writeHead(200, {'Content-Type': 'text/html'});
+    //this.response.write('<?xml version="1.0" encoding="UTF-8" ?><Response><Message>Hello World!</Message>');
+    this.response.end();
+    Meteor.call('TwilioReceive', this.request.body);
+  }
+});
+
 var requireLogin = function() {               // Called for Beer and MobileNo admin pages. Makes sure a user is logged in to access.
   if (! Meteor.user()) {
     if (Meteor.loggingIn()) {
