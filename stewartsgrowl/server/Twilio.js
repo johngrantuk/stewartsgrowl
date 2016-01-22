@@ -26,7 +26,7 @@ Meteor.methods({
            client.messages.create({
              body: Message,
              to: mobileNo.mobileNo,
-             from: Meteor.settings.twilioNumber
+             from: "Growler" //Meteor.settings.twilioNumber
            }, function(err, message) {
 
              if (!err) { // "err" is an error received during the request, if any
@@ -76,7 +76,7 @@ Meteor.methods({
        client.messages.create({
          body: Message,
          to: MobileNo,
-         from: Meteor.settings.twilioNumber
+         from: "Growler"
        }, function(err, message) {
 
          if (!err) { // "err" is an error received during the request, if any

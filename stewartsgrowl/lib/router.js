@@ -22,7 +22,7 @@ Router.route('/mobileNoAdmin', {
   }
 });
 
-Router.route('/twilio', {                        // Twilio SMS Request (GET) URL is pointed to: http://johns-twilio.meteor.com/Twilio/
+Router.route('/twilio', {                        // Twilio SMS Request (GET) URL is pointed to: http://stewartgrowl.meteor.com/twilio
   where: 'server',
   name: 'twilio',
   action: function() {
@@ -60,7 +60,7 @@ redirectOnLogin = function() {                // Redirects logged in user to adm
 setBackGround = function(ImageFile) {         // Sets background of page.
 
   if(ImageFile){
-    $('body').css('background','linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(' + ImageFile + ') no-repeat center center fixed');
+    $('body').css('background','linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(' + ImageFile + ') no-repeat center center fixed');
     $('body').css('-webkit-background-size', 'cover');
     $('body').css('-moz-background-size', 'cover');
     $('body').css('-o-background-size', 'cover');

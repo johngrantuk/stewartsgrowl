@@ -40,7 +40,7 @@ var CreateMessage = function () {
   return message;
 }
 
-var BeerMessage = function () {
+BeerMessage = function () {
   var beerList = "";
   var beers = AllBeers.find();
 
